@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     loadNotes();
 
     // Event listener for saving a note
-document.getElementById('save-note').addEventListener('click', () => {
-    console.log('Save Note button clicked');
-    saveNote();
-});
+    document.querySelector('.save-note').addEventListener('click', () => {
+        console.log('Save Note button clicked');
+        saveNote();
+    });
 
     // Event listener for clearing the note form
-    document.getElementById('clear-form').addEventListener('click', clearForm);
+    document.querySelector('.clear-btn').addEventListener('click', clearForm);
 });
 
 
@@ -31,8 +31,8 @@ async function loadNotes() {
 
 async function saveNote() {
     console.log('Saving note...');
-    const title = document.getElementById('note-title').value;
-    const text = document.getElementById('note-text').value;
+    const title = document.querySelector('.note-title').value;
+    const text = document.querySelector('.note-textarea').value;
 
     try {
         const response = await fetch('/api/notes', {
@@ -58,13 +58,13 @@ async function saveNote() {
 
 function clearForm() {
     console.log('Clearing form...');
-    document.getElementById('note-title').value = '';
-    document.getElementById('note-text').value = '';
+    document.querySelector('.note-title').value = '';
+    document.querySelector('.note-textarea').value = '';
 }
 
 function updateNotesUI(notes) {
     // Clear existing notes
-    const notesContainer = document.getElementById('notes-container');
+    const notesContainer = document.getElementById('list-group');
     notesContainer.innerHTML = '';
 
     // Display existing notes

@@ -4,14 +4,11 @@ let noteTitle = document.querySelector('.note-title');
 let noteText = document.querySelector('.note-textarea');
 let newNoteBtn = document.querySelector('.new-note');
 let clearBtn = document.querySelector('.clear-btn');
-let noteList = document.querySelectorAll('.list-container .list-group');
 
 // Event Listeners
 if (window.location.pathname === '/notes') {
-  saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
-  clearBtn.addEventListener('click', renderActiveNote);
-  noteForm.addEventListener('input', handleRenderBtns);
+  clearBtn.addEventListener('click', clearForm);
 }
 
 const handleNoteSave = () => {
@@ -20,6 +17,12 @@ const handleNoteSave = () => {
     title: noteTitle.value,
     text: noteText.value
   };
+
+  // Function to Clear the Note Form
+function clearForm() {
+  noteTitle.value = '';
+  noteText.value = '';
+}
 
   // Send a POST request to save the new note
   saveNote(newNote)

@@ -1,3 +1,5 @@
+console.log(__dirname);
+
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -9,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Serve static files from the 'public' directory
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public', 'assets')));
 
 // Read existing notes from the JSON file
 const notesFilePath = path.join(__dirname, 'db.json');
@@ -53,10 +55,17 @@ app.post('/api/notes', (req, res) => {
     res.json(newNote);
 });
 
-// Default route
+// Route to serve the index.html page
 app.get('/', (req, res) => {
-    res.send('Welcome to the Note Taker application');
+    res.sendFile(path.join(__dirname, 'public', 'assets', 'index.html'));
 });
+
+// Route to serve the notes.html page
+app.get('/', (req, res) => {
+    const filePath = req.query.page === 'notes' ? 'notes.html' : 'index.html';
+    res.sendFile(path.join(__dirname, 'public', 'assets', filePath));
+});
+
 
 // Start the server
 app.listen(PORT, () => {
