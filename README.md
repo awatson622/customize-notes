@@ -3,7 +3,13 @@
 ## Description
 The Note Taker Application is a web-based tool that allows users to create, save, view, and delete notes. It provides a simple interface for managing personal notes and ideas.
 
+## Table of Contents
 
+- [Features](#features)
+- [Technologies Used](#technologiesUsed)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
 
 ## Features
 Create Notes: Users can create new notes by providing a title and text content.
